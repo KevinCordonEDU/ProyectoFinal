@@ -1,0 +1,33 @@
+Se inicia el programa
+Usuario ingresa el nombre
+Usuario ingresa Edad
+Si no se ingresa edad programa muestra error
+Usuario presiona continuar
+Usuario tiene dos opciones para el Estado Civil:
+No - Programa continua sin cambios
+Si -Programa muestra las opciones:
+Nombre Conyugue
+Edad Conyugue 
+Usuario ingresa las opciones requeridas
+Usuario presiona Continuar
+Se muestra la pregunta "tiene hijos"
+Usuario tiene dos opciones
+No - Programa continua sin cambios
+Si - Programa muestra la opcion:
+Cuantos hijos tiene
+Usuario ingresa informacion requerida.
+
+Dada la informacion del usuario se agregan los siguientes parametros
+Si edad del usuario es menor de 18 - Muestra error
+Si edad del usuario es mayor a 18 y menor de 25 - se agrega la informacion a la variable y se calcula el 10% del Precio base
+Si edad del usuario es mayor a 25 y menor de 49 - se agrega la informacion a la variable y se calcula el 20% Precio Base
+Si edad del usuario es mayor a 50 - se agrega la informacion a la variable y se calcula el 30% porciento del Precio Base 
+
+Si el usuario tiene conyugue y la edad del conyugue es mayor a 18 y menor de 25 - se agrega la informacion a la variable y se calcula el 10 porciento de Precio base
+Si el usuario tiene conyugue y la edad del conyugue es mayor a 25 y menor de 49 - se agrega la informacion a la variable y se calcula el 20 porciento de Precio base
+Si el usuario tiene conyugue y la edad del conyugue es mayor a 50 - se agrega la informacion a la variable y se calcula el 30 porciento de Precio base
+
+Si el usuario tiene Hijos - se agrega la informacion a la variable y se calcula el numero de hijos por el 20 porciento de Precio base
+
+Programa devuelve el total. 
+Fin
