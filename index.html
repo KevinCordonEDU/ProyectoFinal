@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!---EL CODIGO JS EMPIEZA EN LA LINEA 132-->
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Cotizaciones</title>
+
+</head>
+
+<body>
+  <script src="script.js"></script>
+
+  <div class="container">
+    <form id="Form1">
+      <h3>COTIZADOR</h3>
+      <h5>Ingrese los siguientes datos:</h5>
+      <input type="text" placeholder="Nombre:" required id="nombre">
+
+      <br>
+
+      <input type="number" placeholder="Edad:" required id="edad">
+
+      <div class="btn-box">
+        <button type="button" id="cont1">Continuar</button>
+
+      </div>
+    </form>
+
+    <form id="Form2">
+      <h3>Estado Civil:</h3>
+
+      <table>
+        <tr>
+          <td><input type="radio" id="soltero" name="estadoCivil" value="soltero" onclick="show2();"></td>
+          <td><label for="soltero">Soltero</label></td>
+        </tr>
+        <tr>
+          <td><input type="radio" id="casado" name="estadoCivil" value="casado" onclick="show1();"></td>
+          <td><label for="casado">Casado</label></td>
+        </tr>
+
+      </table>
+      <div id="div1" class="hide">
+        <h4>Nombre del Conyuge?</h4>
+        <input type="text" id="nombreConyugue">
+        <h4>Edad del Conyugue?</h4>
+        <input type="number" width="20px" id="edadConyugueNumero">
+
+      </div>
+      <div class="btn-box">
+        <button type="button" id="reg1">Regresar</button>
+        <button type="button" id="cont2">Continuar</button>
+
+
+      </div>
+    </form>
+    <form id="Form3">
+      <h3>Tiene hijos o hijas?:</h3>
+
+      <table>
+        <tr>
+            <td><input type="radio" id="no" name="hijos" value="no" onclick="show4();"></td>
+            <td><label for="no">NO</label></td>
+          </tr>
+        <tr>
+          <td><input type="radio" id="si" name="hijos" value="si" onclick="show3();"></td>
+          <td><label for="si">SI</label></td>
+        </tr>
+       
+      </table>
+      <div class="hide" id="div2">
+        <h4>Cuantos hijos tiene?</h4>
+        <input type="number" id="cantidadHijos">
+
+      </div>
+
+
+
+      <div class="btn-box">
+        <button type="button" id="reg2">Regresar</button>
+        <button type="button" id="cont3">Continuar</button>
+
+
+      </div>
+    </form>
+    <form id="Form4">
+      <h3>Resultados:</h3>
+        <table>
+            <tr>
+                <td>Nombre:</td>
+                <td><span id="minombre"></span></td>
+            </tr>
+            <tr>
+                <td>Edad:</td>
+                <td><span id="miedad"></span></td>
+            </tr>
+        
+
+           <tr>
+               <td>Precio Base:</td>
+               <td>Q<span id="miPrecioBase"></span></td>
+           </tr>
+           <Tr>
+               <td>Recargos:</td>
+               <td>Q<span id="misubtotal"></span></td>
+           </Tr>
+           <Tr>
+            <td><h2>Total:</h2></td>
+            <td><h2>Q<span id="mitotal"></span></h2></td>
+        </Tr>
+
+        </table>
+
+
+
+      <div class="btn-box">
+        <button type="button" id="reg3">Regresar</button>
+        <button type="button" id="cont4">Salir</button>
+
+
+      </div>
+    </form>
+
+
+  </div>
+  </div>
+
+<!---EL CODIGO JS EMPIEZA AQUI-->
+  <script>
+
+      var nombre = null
+      var edad = null
+      var precioBase = 2000
+      var edad_18 = 0.1
+      var edad_25 = 0.2
+      var edad_50 = 0.3
+
+      var casado_18 = 0.1
+      var casado_25 = 0.2
+      var casado_50 = 0.3
+
+      var hijos_recargo = 0.2
+      var recargo1 = 0
+      var recargo2 = 0
+      var recargo3 = 0
+      var recargo_total = 0
+
+      var total = 0
+      console.log(nombre);
+
+    function show1() {
+      document.getElementById('div1').style.display = 'block';
+    }
+
+    function show2() {
+      document.getElementById('div1').style.display = 'none';
+    }
+
+    function show3() {
+      document.getElementById('div2').style.display = 'block';
+    }
+
+    function show4() {
+      document.getElementById('div2').style.display = 'none';
+    }
+
+    
+    var Form1 = document.getElementById("Form1");
+    var Form2 = document.getElementById("Form2");
+    var Form3 = document.getElementById("Form3");
+    var Form4 = document.getElementById("Form4");
+
+    var cont1 = document.getElementById("cont1");
+    var cont2 = document.getElementById("cont2");
+    var cont3 = document.getElementById("cont3");
+    var cont4 = document.getElementById("cont4");
+
+    var reg1 = document.getElementById("reg1");
+    var reg2 = document.getElementById("reg2");
+    var reg3 = document.getElementById("reg3");
+
+    cont1.onclick = function() {
+      Form1.style.left = "-450px";
+      Form2.style.left = "40px";
+      nombre = document.getElementById("nombre").value;
+      edad = document.getElementById("edad").value;
+      document.getElementById("minombre").innerHTML = nombre;
+      document.getElementById("miedad").innerHTML = edad;
+      document.getElementById("miPrecioBase").innerHTML = precioBase;
+        console.log(nombre);
+        console.log(edad);
+
+        if (edad < 18 || edad == null){
+            confirm("Usuario menor de edad o el campo se encuentra vacio, por favor reintentelo.")
+            window.location.reload();
+        }
+        if (edad >= 18 && edad <= 24){
+          recargo1 = precioBase * edad_18;
+          console.log (recargo1); 
+        }
+        else if (edad >= 25 && edad <= 49){
+          recargo1 = precioBase * edad_25;
+          console.log (recargo1);
+        }
+        else if (edad >= 50){
+          recargo1 = precioBase * edad_50;
+          console.log(recargo1);
+        }
+
+        return recargo1;
+        
+    }
+
+    reg1.onclick = function() {
+      Form1.style.left = "40px";
+      Form2.style.left = "450px";
+    }
+    cont2.onclick = function() {
+      Form2.style.left = "-450px";
+      Form3.style.left = "40px";
+
+      edadConyugue = document.getElementById("edadConyugueNumero").value;
+      if (edadConyugue == null || edadConyugue == 0){
+        recargo2 = 0;
+      }
+      else if (edadConyugue >= 18 && edadConyugue <= 24){
+        recargo2 = precioBase * casado_18;
+        console.log (recargo2);
+      }
+      else if (edadConyugue >= 25 && edadConyugue <= 49){
+        recargo2 = precioBase * casado_25;
+        console.log (recargo2);
+      } 
+      else if (edadConyugue >= 50){
+        recargo2 = precioBase * casado_50;
+        console.log (recargo2);
+      }
+      return recargo2;
+      
+    }
+    reg2.onclick = function() {
+      Form2.style.left = "40px";
+      Form3.style.left = "450px";
+    }
+    cont3.onclick = function() {
+      Form3.style.left = "-450px";
+      Form4.style.left = "40px";
+      cantidadHijos = document.getElementById("cantidadHijos").value;
+      if (cantidadHijos >= 1){
+        recargo3 = cantidadHijos * (precioBase * hijos_recargo);
+        console.log(recargo3);
+      }
+
+      var recargo_total = recargo1 + recargo2 + recargo3;
+      document.getElementById("misubtotal").innerHTML = recargo_total;
+      var mitotal = precioBase + recargo1 + recargo2 + recargo3;
+      document.getElementById("mitotal").innerHTML = mitotal;
+
+    }
+    reg3.onclick = function() {
+      Form3.style.left = "40px";
+      Form4.style.left = "450px";
+    }
+
+    cont4.onclick = function() {
+      window.location.reload();
+    }
+
+  </script>
+
+</body>
+
+</html>
